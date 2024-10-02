@@ -13,7 +13,7 @@ db_session.global_init("db/cats_db")
 
 
 @app.get("/colors")
-async def all_colors(clr):
+async def all_colors(clr=""):
     if clr:
         db_sess = db_session.create_session()
         color = db_sess.query(Cat).filter(Cat.color == str(clr)).all()
@@ -66,7 +66,7 @@ async def add_cat(color, age, dsc):
 async def change(id, param, data):
     dct = {"color": Cat.color,
            "age": Cat.age,
-           "discription": Cat.discription,
+           "description": Cat.description,
            "id": Cat.id}
     if data.isdigit():
         data = int(data)
